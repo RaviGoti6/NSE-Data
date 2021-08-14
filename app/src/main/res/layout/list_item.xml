@@ -12,9 +12,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Symbol"
-        android:textSize="18dp"
         android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/barrier2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -26,20 +26,45 @@
         android:text="Open"
         android:textColor="#000000"
         android:textSize="18dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtOpen2"
         app:layout_constraintTop_toBottomOf="@+id/txtSymbol" />
+
+    <TextView
+        android:id="@+id/txtOpen2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Open: "
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/barrier2"
+        app:layout_constraintTop_toBottomOf="@+id/txtSymbol" />
+
 
     <TextView
         android:id="@+id/txtHigh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="High"
         android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtHigh2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Day High: "
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtHigh"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtSymbol"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,14 +73,45 @@
         android:id="@+id/txtLow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Low"
         android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHigh" />
+
+    <TextView
+        android:id="@+id/txtLow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Day Low: "
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtLow"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtOpen"
-        app:layout_constraintTop_toBottomOf="@+id/txtHigh" />
+        app:layout_constraintTop_toBottomOf="@+id/txtHigh2" />
+
+    <TextView
+        android:id="@+id/txtNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/txtSymbol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="txtNumber" />
 </androidx.constraintlayout.widget.ConstraintLayout>
