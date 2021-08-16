@@ -2,13 +2,11 @@ package com.example.nsedata;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Filter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -93,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     listView.setFilterText(newText);
                 }
-                return true;
+                return false;
             }
         });
         return super.onCreateOptionsMenu(menu);
@@ -188,13 +186,19 @@ public class MainActivity extends AppCompatActivity {
                                 String low = c.getString("dayLow");
 
                                 HashMap<String, String> map = new HashMap<>();
-                                String pos = String.valueOf(listView.getCount() + 1 + ".");
-
+                                int pos = Integer.parseInt(String.valueOf((listView.getCount() + 1)));
+                                String num;
+                                if (pos <= 9) {
+                                    num = String.format("%3d", pos) + ".";
+                                    //num = num +".";
+                                } else {
+                                    num = pos + ".";
+                                }
                                 map.put("symbol", symbol);
                                 map.put("open", open);
                                 map.put("dayHigh", high);
                                 map.put("dayLow", low);
-                                map.put("number", pos);
+                                map.put("number", num);
 
                                 leadList.add(map);
 
