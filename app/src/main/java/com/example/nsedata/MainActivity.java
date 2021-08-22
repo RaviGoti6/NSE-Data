@@ -2,6 +2,7 @@ package com.example.nsedata;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -73,8 +74,40 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String, Object> obj = (HashMap<String, Object>) listView.getAdapter().getItem(position);
                 String num = (String) obj.get("number");
+                String symbol = (String) obj.get("symbol");
+                String open = (String) obj.get("open");
+                String high = (String) obj.get("dayHigh");
+                String low = (String) obj.get("dayLow");
+                String lastPrice = (String) obj.get("lastPrice");
+                String previousClose = (String) obj.get("previousClose");
+                String change = (String) obj.get("change");
+                String pChange = (String) obj.get("pChange");
+                String yearHigh = (String) obj.get("yearHigh");
+                String yearLow = (String) obj.get("yearLow");
+                String totalTradedVolume = (String) obj.get("totalTradedVolume");
+                String totalTradedValue = (String) obj.get("totalTradedValue");
+                String lastUpdateTime = (String) obj.get("lastUpdateTime");
+
                 Toast.makeText(MainActivity.this, "Number:" + num, Toast.LENGTH_SHORT).show();
                 Log.e("num=" , num);
+
+                Intent i = new Intent(MainActivity.this, DetailShow.class);
+                i.putExtra("num", num);
+                i.putExtra("symbol", symbol);
+                i.putExtra("open", open);
+                i.putExtra("high", high);
+                i.putExtra("low", low);
+                i.putExtra("lastPrice", lastPrice);
+                i.putExtra("previousClose", previousClose);
+                i.putExtra("change", change);
+                i.putExtra("pChange", pChange);
+                i.putExtra("yearHigh", yearHigh);
+                i.putExtra("yearLow", yearLow);
+                i.putExtra("totalTradedVolume", totalTradedVolume);
+                i.putExtra("totalTradedValue", totalTradedValue);
+                i.putExtra("lastUpdateTime", lastUpdateTime);
+
+                startActivity(i);
             }
         });
     }
@@ -109,44 +142,6 @@ public class MainActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
-
-/*
-    public Filter getFilter() {
-        return new Filter() {
-
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                final FilterResults oReturn = new FilterResults();
-                final ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
-                if (orig == null)
-                    orig = leadList;
-                if (constraint != null) {
-                    if (orig != null && orig.size() > 0) {
-                        for (final HashMap<String, String> g : orig) {
-                            if (g.get("symbol").toLowerCase()
-                                    .contains(constraint.toString()))
-                                results.add(g);
-                        }
-                    }
-                    oReturn.values = results;
-                }
-                return oReturn;
-            }
-
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint,
-                                          FilterResults results) {
-                leadList = (ArrayList<HashMap<String, String>>) results.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
-    public void notifyDataSetChanged() {
-        super.notify();
-    }
-*/
 
     void run() throws IOException {
 
@@ -197,6 +192,15 @@ public class MainActivity extends AppCompatActivity {
                                 String open = c.getString("open");
                                 String high = c.getString("dayHigh");
                                 String low = c.getString("dayLow");
+                                String lastPrice = c.getString("lastPrice");
+                                String previousClose = c.getString("previousClose");
+                                String change = String.valueOf(Float.parseFloat(c.getString("change")));
+                                String pChange = String.valueOf(Float.parseFloat(c.getString("pChange")));
+                                String yearHigh = c.getString("yearHigh");
+                                String yearLow = c.getString("yearLow");
+                                String totalTradedVolume = c.getString("totalTradedVolume");
+                                String totalTradedValue = c.getString("totalTradedValue");
+                                String lastUpdateTime = c.getString("lastUpdateTime");
 
                                 HashMap<String, String> map = new HashMap<>();
                                 int pos = Integer.parseInt(String.valueOf((listView.getCount() + 1)));
@@ -211,6 +215,15 @@ public class MainActivity extends AppCompatActivity {
                                 map.put("open", open);
                                 map.put("dayHigh", high);
                                 map.put("dayLow", low);
+                                map.put("lastPrice", lastPrice);
+                                map.put("previousClose", previousClose);
+                                map.put("change", change);
+                                map.put("pChange", pChange);
+                                map.put("yearHigh", yearHigh);
+                                map.put("yearLow", yearLow);
+                                map.put("totalTradedVolume", totalTradedVolume);
+                                map.put("totalTradedValue", totalTradedValue);
+                                map.put("lastUpdateTime", lastUpdateTime);
                                 map.put("number", num);
 
                                 leadList.add(map);

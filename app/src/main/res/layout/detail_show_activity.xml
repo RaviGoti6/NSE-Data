@@ -11,7 +11,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Symbol"
+        android:text="Symbol:"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,7 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Open"
+        android:text="Open:"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -30,6 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Day High:"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -39,6 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Day Low:"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -48,6 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Previous Close:"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -57,6 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Change:"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -65,9 +77,126 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="P_Change:"
+        android:text="Change (%):"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Year High:"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Year Low:"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Volume (Shares):"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Value (₹ Lakhs):"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Last Updated Time:"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/txtLastUpdatedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Last Updated Time"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/txtValue" />
+
+    <TextView
+        android:id="@+id/txtValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/txtVolumeValue" />
+
+    <TextView
+        android:id="@+id/txtVolumeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Volume Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/txtYearLowValue" />
+
+    <TextView
+        android:id="@+id/txtYearLowValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Year Low Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/txtYearHighValue" />
+
+    <TextView
+        android:id="@+id/txtYearHighValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Year High Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/txtPChangeValue" />
 
     <TextView
         android:id="@+id/txtPChangeValue"
@@ -75,7 +204,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="P_Change Value: "
+        android:text="P_Change Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/txtChangeValue" />
 
@@ -86,6 +217,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Change Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/txPreviousCloseValue" />
 
@@ -96,6 +229,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Previous Close Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/txtLowValue" />
 
@@ -106,6 +241,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Day Low Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/txtHighValue" />
 
@@ -116,6 +253,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Day High Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/txtOpenValue" />
 
@@ -126,6 +265,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Open Value"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/txtSymbolName" />
 
@@ -135,6 +276,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Symbol Name"
+        android:textSize="18dp"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
