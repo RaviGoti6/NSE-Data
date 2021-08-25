@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
+import java.util.Objects;
 
 public class DetailShow extends AppCompatActivity {
 
@@ -53,8 +54,9 @@ public class DetailShow extends AppCompatActivity {
             volume = (String) b.get("totalTradedVolume");
             value = (String) b.get("totalTradedValue");
             lastUpTime = (String) b.get("lastUpdateTime");
-        }
 
+            Objects.requireNonNull(getSupportActionBar()).setTitle(symbol);
+        }
 
         float changee = Float.parseFloat(change);
         float pChangee = Float.parseFloat(pChange);
@@ -71,10 +73,10 @@ public class DetailShow extends AppCompatActivity {
         String valuee = (String.valueOf(Double.parseDouble(value)));
         if (Math.abs(Double.parseDouble(value) / 100000) > 1) {
             valuee = String.valueOf((Double.parseDouble(value) / 100000));
-            valuee = formatLakh(Double.parseDouble(valuee));
+           // valuee = formatLakh(Double.parseDouble(valuee));
         }
         Log.e("value", String.valueOf(valuee));
-        value = String.valueOf(valuee);
+
 
 
         DecimalFormat formatter = new DecimalFormat("##,##,##0.00");
@@ -86,6 +88,7 @@ public class DetailShow extends AppCompatActivity {
         yHigh = formatter.format(Double.parseDouble(yHigh));
         yLow = formatter.format(Double.parseDouble(yLow));
         volume = formatter2.format(Double.parseDouble(volume));
+        value = formatter.format(Double.parseDouble(valuee));
         //volume = String.format("%,d", Long.parseLong(volume.toString()));
 
 
@@ -104,13 +107,13 @@ public class DetailShow extends AppCompatActivity {
         txtLastUpdatedTime.setText(lastUpTime);
     }
 
-    private static String formatLakh(double d) {
+/*    private static String formatLakh(double d) {
         String s = String.format(Locale.UK, "%1.2f", Math.abs(d));
         s = s.replaceAll("(.+)(...\\...)", "$1,$2");
         while (s.matches("\\d{3,},.+")) {
             s = s.replaceAll("(\\d+)(\\d{2},.+)", "$1,$2");
         }
         return d < 0 ? ("-" + s) : s;
-    }
+    }*/
 
 }
