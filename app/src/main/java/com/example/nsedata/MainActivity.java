@@ -1,8 +1,10 @@
 package com.example.nsedata;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -112,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -120,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         MenuItem menuItem = menu.findItem(R.id.action_search);
 
         SearchView searchView = (SearchView) menuItem.getActionView();
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         searchView.setQueryHint("Type here to Search");
         searchView.setIconifiedByDefault(false);
         //searchView.setSubmitButtonEnabled(true);

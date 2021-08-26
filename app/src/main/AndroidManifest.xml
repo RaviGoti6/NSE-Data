@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailShow"></activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/NoNav">
@@ -22,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".DetailShow" />
     </application>
 
 </manifest>

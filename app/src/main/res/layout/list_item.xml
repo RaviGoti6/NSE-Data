@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/txtSymbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
         android:text="Symbol"
+        android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="@dimen/_13sdp"
         app:layout_constraintStart_toEndOf="@+id/barrier2"
@@ -24,7 +26,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Open"
-        android:textColor="#000000"
         android:textSize="@dimen/_13sdp"
         app:layout_constraintStart_toEndOf="@+id/txtOpen2"
         app:layout_constraintTop_toBottomOf="@+id/txtSymbol" />
@@ -46,10 +47,8 @@
         android:id="@+id/txtHigh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="High"
-        android:textColor="#000000"
         android:textSize="@dimen/_13sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +58,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Day High: "
         android:textColor="#000000"
@@ -76,7 +74,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Low"
-        android:textColor="#000000"
         android:textSize="@dimen/_13sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHigh" />
@@ -100,10 +97,8 @@
         android:id="@+id/txtNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:text="00."
-        android:textColor="#000000"
         android:textSize="@dimen/_13sdp"
         app:layout_constraintEnd_toStartOf="@+id/txtSymbol"
         app:layout_constraintStart_toStartOf="parent"
