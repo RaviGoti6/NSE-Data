@@ -1,11 +1,20 @@
 package com.example.nsedata;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ComponentActivity;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
@@ -78,7 +87,6 @@ public class DetailShow extends AppCompatActivity {
         Log.e("value", String.valueOf(valuee));
 
 
-
         DecimalFormat formatter = new DecimalFormat("##,##,##0.00");
         DecimalFormat formatter2 = new DecimalFormat("##,##,##0");
         open = formatter.format(Double.parseDouble(open));
@@ -90,7 +98,6 @@ public class DetailShow extends AppCompatActivity {
         volume = formatter2.format(Double.parseDouble(volume));
         value = formatter.format(Double.parseDouble(valuee));
         //volume = String.format("%,d", Long.parseLong(volume.toString()));
-
 
 
         txtSymbolName.setText(symbol);
@@ -107,7 +114,42 @@ public class DetailShow extends AppCompatActivity {
         txtLastUpdatedTime.setText(lastUpTime);
     }
 
-/*    private static String formatLakh(double d) {
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                hideSystemUI();
+            } else {
+                Toast.makeText(this, "sdsfsdg", Toast.LENGTH_SHORT).show();
+                hideSystemUI2();
+            }
+
+        }
+    }
+
+    public void hideSystemUI() {
+        Window window = this.getWindow();
+        View decorView = this.getWindow().getDecorView();
+
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        WindowInsetsControllerCompat controllerCompat = new WindowInsetsControllerCompat(window, decorView);
+        controllerCompat.hide(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());
+        controllerCompat.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+    }
+
+    public void hideSystemUI2() {
+        Window window = this.getWindow();
+        //View decorView = this.getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorAccent));
+        }
+    }
+
+    /*    private static String formatLakh(double d) {
         String s = String.format(Locale.UK, "%1.2f", Math.abs(d));
         s = s.replaceAll("(.+)(...\\...)", "$1,$2");
         while (s.matches("\\d{3,},.+")) {

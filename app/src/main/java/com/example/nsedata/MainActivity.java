@@ -2,25 +2,38 @@ package com.example.nsedata;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.icu.text.UnicodeSetSpanner;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsetsController;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -56,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         //txtSymbol = (TextView) findViewById(R.id.txtSymbol);
         txtNumber = (TextView) findViewById(R.id.txtNumber);
-        
+
         try {
             run();
         } catch (IOException e) {
@@ -105,6 +118,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                hideSystemUI();
+            } else {
+                Toast.makeText(this, "sdsfsdg", Toast.LENGTH_SHORT).show();
+                hideSystemUI2();
+            }
+
+        }
+    }
+
+    public void hideSystemUI() {
+        Window window = this.getWindow();
+        View decorView = this.getWindow().getDecorView();
+
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        WindowInsetsControllerCompat controllerCompat = new WindowInsetsControllerCompat(window, decorView);
+        controllerCompat.hide(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());
+        controllerCompat.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+    }
+
+    public void hideSystemUI2() {
+        Window window = this.getWindow();
+        //View decorView = this.getWindow().getDecorView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorAccent));
+        }
+    }
+
 
     void run() throws IOException {
 
