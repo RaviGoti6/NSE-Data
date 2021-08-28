@@ -4,30 +4,23 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -38,9 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     //ListAdapter adptr;
-    ListAdapter adapter;
-
-    //String symbol, open, high, low;
+    SimpleAdapter adapter;
+    SearchView searchView;
 
     ArrayList<HashMap<String, String>> leadList;
 
@@ -64,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //txtSymbol = (TextView) findViewById(R.id.txtSymbol);
         txtNumber = (TextView) findViewById(R.id.txtNumber);
-
-
+        
         try {
             run();
         } catch (IOException e) {
@@ -92,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 String lastUpdateTime = (String) obj.get("lastUpdateTime");
 
                 Toast.makeText(MainActivity.this, "Number:" + num, Toast.LENGTH_SHORT).show();
-                Log.e("num=" , num);
+                Log.e("num=", num);
 
                 Intent i = new Intent(MainActivity.this, DetailShow.class);
                 i.putExtra("num", num);
@@ -113,39 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu, menu);
-
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        searchView.setQueryHint("Type here to Search");
-        searchView.setIconifiedByDefault(false);
-        //searchView.setSubmitButtonEnabled(true);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                if (TextUtils.isEmpty(newText)) {
-                    listView.clearTextFilter();
-                } else {
-                    listView.setFilterText(newText);
-                }
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
     }
 
     void run() throws IOException {
@@ -233,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 leadList.add(map);
 
-
                                 //Log.e("Test data=", pos);
 
                                 adapter = new SimpleAdapter(MainActivity.this, leadList, R.layout.list_item, new String[]{"symbol", "open", "dayHigh", "dayLow", "number"}, new int[]{R.id.txtSymbol, R.id.txtOpen, R.id.txtHigh, R.id.txtLow, R.id.txtNumber});
@@ -246,8 +203,6 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                             //txtSymbol.setText(email);
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -255,5 +210,48 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        menuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                //listView.setAdapter(adapter);
+                searchView.clearFocus();
+                adapter.getFilter().filter("");
+                return true;
+            }
+        });
+
+        listView.setAdapter(adapter);
+
+        searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Type here to Search");
+        searchView.setIconifiedByDefault(false);
+        searchView.onActionViewExpanded();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }
